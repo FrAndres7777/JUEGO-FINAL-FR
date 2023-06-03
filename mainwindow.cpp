@@ -1,5 +1,6 @@
 #include "mainwindow.h"
 #include "ui_mainwindow.h"
+#include <QDebug>
 
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
@@ -17,7 +18,7 @@ MainWindow::MainWindow(QWidget *parent)
     obj->pos(v_limit);
     scene->addItem(obj);
 
-    obj = new bolagraf(50,350,2,2,20,1);
+    obj = new bolagraf(50,350,5,2,20,1);
     obj->pos(v_limit);
     scene->addItem(obj);
 
@@ -35,13 +36,19 @@ MainWindow::~MainWindow()
 
 void MainWindow::bordercollision(bolagraf *b)
 {
+    if(b->getEsfera()->getVy()==1){
+        b->getEsfera()->setVy(40);
+    }
     if(b->getEsfera()->getPx() < b->getEsfera()->getRad() || b->getEsfera()->getPx() > h_limit-b->getEsfera()->getRad()){
         b->getEsfera()->setVx(b->getEsfera()->getVx()*-1.1);
     }
 
     if(b->getEsfera()->getPy() < b->getEsfera()->getRad() || b->getEsfera()->getPy() > v_limit-b->getEsfera()->getRad()){
         b->getEsfera()->setVy(b->getEsfera()->getVy()*-1.1);
+
     }
+    //qDebug()<< (b->getEsfera()->getVy())<<"\n";
+
 
 }
 

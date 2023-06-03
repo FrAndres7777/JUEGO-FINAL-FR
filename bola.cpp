@@ -75,7 +75,7 @@ void bola::mover(float dt)
 {
     //if(py<=0) vy = -vy;
     vy = vy - G*dt;
-    if (int(vy) <= 0 && int(py) <= rad){ py=rad; vy=0;}
+    if (int(vy) <= 0 && int(py) <= rad){ py=rad; vy=1;}
     px += vx*dt;
     py += vy*dt;
 }
