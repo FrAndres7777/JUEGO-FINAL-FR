@@ -8,17 +8,22 @@ MainWindow::MainWindow(QWidget *parent)
 {
     ui->setupUi(this);
     scene=new QGraphicsScene(this);
+    scene->setBackgroundBrush(QPixmap(":/imagens/FONDOMARIOFRjpg").scaled(1400,700));
+    ui->graphicsView->setFixedSize(1400,700);
     h_limit = 1400;
     v_limit = 700;
+    ui->graphicsView->setScene(scene);
     scene->setSceneRect(0,0,h_limit,v_limit);
     scene->addRect(scene->sceneRect());
-    ui->graphicsView->setScene(scene);
 
-    obj = new bolagraf(50,50,2,0,20,1);
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+    obj = new bolagraf(50,50,2,0,30,1);
     obj->pos(v_limit);
     scene->addItem(obj);
 
-    obj = new bolagraf(50,350,5,2,20,1);
+    obj = new bolagraf(1300,650,-5,2,30,1);
     obj->pos(v_limit);
     scene->addItem(obj);
 

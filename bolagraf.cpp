@@ -25,8 +25,9 @@ QRectF bolagraf::boundingRect() const
 
 void bolagraf::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
-    painter->setBrush(Qt::darkBlue);        //asigna el color
-    painter->drawEllipse(boundingRect());    //dibuja una elipse encerrada en la boundingRect
+        QPixmap ninja(":/imagens/FR20.png");
+        painter->drawPixmap(boundingRect(),ninja,ninja.rect());
+       //dibuja una elipse encerrada en la boundingRect
     Q_UNUSED(option);
     Q_UNUSED(widget);
 }
