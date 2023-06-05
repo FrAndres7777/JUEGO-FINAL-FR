@@ -4,6 +4,7 @@ bolagraf::bolagraf(float px_, float py_, float vx_, float vy_, float rad_, float
 {
     esfera =  new bola(px_,py_,vx_,vy_,rad_);
     escala = escala_;
+    setPos(px_,py_);
 }
 
 

@@ -1,4 +1,4 @@
-QT       += core gui
+QT       += core gui multimedia
 
 greaterThan(QT_MAJOR_VERSION, 4): QT += widgets
 
@@ -18,13 +18,17 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
     bola.cpp \
     bolagraf.cpp \
+    bomber.cpp \
     main.cpp \
-    mainwindow.cpp
+    mainwindow.cpp \
+    movimiento.cpp
 
 HEADERS += \
     bola.h \
     bolagraf.h \
-    mainwindow.h
+    bomber.h \
+    mainwindow.h \
+    movimiento.h
 
 FORMS += \
     mainwindow.ui
@@ -36,3 +40,7 @@ else: unix:!android: target.path = /opt/$${TARGET}/bin
 
 RESOURCES += \
     imagenes.qrc
+DISTFILES +=
+QT += multimedia
+OTHER_FILES += \
+    path/to/musicfile.mp3
