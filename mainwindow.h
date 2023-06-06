@@ -45,6 +45,8 @@ private slots:
     void actualizarG();
     void actualizarBala();
     void ChoquesGoma();
+    void ChoquesBall();
+
 
 private:
     Ui::MainWindow *ui;
@@ -67,6 +69,17 @@ private:
 
      QMediaPlayer *playerR;
      QAudioOutput *audioOutputR ;
+
+
+     QMediaPlayer *playerB;
+     QAudioOutput *audioOutputB ;
+
+     QMediaPlayer *playerChoke;
+     QAudioOutput *audioOutputChoke ;
+
+
+
+
 
 
 

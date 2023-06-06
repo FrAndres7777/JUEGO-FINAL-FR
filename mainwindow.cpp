@@ -56,6 +56,24 @@ MainWindow::MainWindow(QWidget *parent)
      playerR->setSource(QUrl::fromLocalFile("qrc:/Music/rebote_o1ZAQ5Tk.mp3"));
      playerR->stop();
 
+     //music Bala
+     playerB = new QMediaPlayer;
+     audioOutputB = new QAudioOutput;
+     playerB->setAudioOutput(audioOutputB);
+     // ...
+     playerB->setSource(QUrl::fromLocalFile("qrc:/Music/SonidoBala.mp3"));
+     playerB->play();
+     // MUSIC CHOQUE
+     playerChoke = new QMediaPlayer;
+     audioOutputChoke = new QAudioOutput;
+     playerChoke->setAudioOutput(audioOutputChoke);
+     // ...
+     playerChoke->setSource(QUrl::fromLocalFile("qrc:/Music/CHOKEFrBALL.mp3"));
+     playerChoke->stop();
+
+
+
+
 
      //BALA
      bala = new ball (0, 550 ,20);
@@ -67,7 +85,7 @@ MainWindow::MainWindow(QWidget *parent)
     timer->stop();
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizar()));
     timer->start(20);
-    timer->stop();
+
 
 
     timer3G = new QTimer;
@@ -97,18 +115,18 @@ void MainWindow::bordercollision(bolagraf *b)
         }
     }
     if(b->getEsfera()->getPx() < b->getEsfera()->getRad() || b->getEsfera()->getPx() > h_limit-b->getEsfera()->getRad()){
-        b->getEsfera()->setVx(b->getEsfera()->getVx()*-1.1);
+        b->getEsfera()->setVx(b->getEsfera()->getVx()*-1.01);
         playerR->play();
     }
 
     if(b->getEsfera()->getPy() < b->getEsfera()->getRad() || b->getEsfera()->getPy() > v_limit-b->getEsfera()->getRad()){
-        b->getEsfera()->setVy(b->getEsfera()->getVy()*-1.1);
+        b->getEsfera()->setVy(b->getEsfera()->getVy()*-1.01);
         playerR->play();
 
 
 
     }
-    //qDebug()<< (b->getEsfera()->getVy())<<"\n";
+    qDebug()<< (b->getEsfera()->getVy())<<"\n";
 
 
 }
@@ -124,6 +142,7 @@ void MainWindow::actualizar()
 
     }
     ChoquesGoma();
+    ChoquesBall();
 
 
 }
@@ -193,12 +212,23 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
 void MainWindow::actualizarBala()
 {
+
     movimientoBala->calPosicionBala();
     movimientoBala->calVelocidadBala();
     bala->setPos(1350 -movimientoBala->getPosx(),bala->getPosy());
     if(1350 -movimientoBala->getPosx() < 0){
         bala->setPos(1350,0);
         movimientoBala = new Movimiento(0 , 600 , 200);
+
+        playerB = new QMediaPlayer;
+        audioOutputB = new QAudioOutput;
+        playerB->setAudioOutput(audioOutputB);
+        // ...
+        playerB->setSource(QUrl::fromLocalFile("qrc:/Music/SonidoBala.mp3"));
+        playerB->play();
+
+
+
     }
 }
 
@@ -210,6 +240,7 @@ void MainWindow::ChoquesGoma()
           (*it)->setPos(1300,500);
           (*it)->getEsfera()->setPx(1300);
            (*it)->getEsfera()->setPy(500);
+            playerChoke->play();
 
 
 
@@ -217,4 +248,14 @@ void MainWindow::ChoquesGoma()
         }
     }
 }
+
+void MainWindow::ChoquesBall()
+{
+    if (Franklin->collidesWithItem(bala)){
+        playerChoke->play();
+
+    }
+}
+
+
 

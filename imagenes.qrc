@@ -11,8 +11,10 @@
         <file>BALLGame.png</file>
     </qresource>
     <qresource prefix="/Music">
-        <file>Rebote.mp3</file>
         <file>BASEJuego.mp3</file>
         <file>rebote_o1ZAQ5Tk.mp3</file>
+        <file>SonidoBala.mp3</file>
+        <file>choque.mp3</file>
+        <file>CHOKEFrBALL.mp3</file>
     </qresource>
 </RCC>
