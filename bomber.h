@@ -38,5 +38,7 @@ public:
 
     double getPosx() const;
     void setPosx(double newPosx);
+    double getPosy() const;
+    void setPosy(double newPosy);
 };
 #endif // BOMBER_H

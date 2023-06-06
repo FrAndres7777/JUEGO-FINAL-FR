@@ -23,9 +23,9 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
-    balls.push_back(new bolagraf(1300,60,-2,4,30,1));
+    balls.push_back(new bolagraf(1300,60,-1,4,30,1));
     scene->addItem(balls.back());
-    balls.push_back(new bolagraf(1350,80,-2,4,30,1));
+    balls.push_back(new bolagraf(1350,80,-1,4,30,1));
     scene->addItem(balls.back());
     balls.push_back(new bolagraf(700,45,-1,4,35,1));
     scene->addItem(balls.back());
@@ -35,6 +35,10 @@ MainWindow::MainWindow(QWidget *parent)
     //personaje
      Franklin = new BOMBER (0,286,50);
      scene->addItem(Franklin);
+
+     //GAllos lanzador de balas y  proyectiles parabolicos
+     Colorado = new GALLOEnemy(655,300,45);
+    scene->addItem(Colorado);
 
 
      //music
@@ -53,17 +57,24 @@ MainWindow::MainWindow(QWidget *parent)
      playerR->stop();
 
 
-
+     //BALA
+     bala = new ball (0, 550 ,20);
+     scene->addItem(bala);
+     movimientoBala = new Movimiento(0 , 0 , 200);
 
 
     timer = new QTimer;
     timer->stop();
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizar()));
     timer->start(20);
+    timer->stop();
+
 
     timer3G = new QTimer;
     timer3G->stop();
     connect(timer3G, SIGNAL(timeout()), this, SLOT(actualizarG()));
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(actualizarBala()));
 
 
 }
@@ -122,6 +133,7 @@ void MainWindow::actualizarG()
     movimiento->calPosicion();
     movimiento->newPosicion();
     Franklin->setPos(Franklin->getPosx(),700 -movimiento->getPosy());
+    Franklin->setPosy(700 -movimiento->getPosy());
 
 
     if(700 -movimiento->getPosy() > 286 ){
@@ -169,11 +181,23 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
 
     }else if(evento->key()== Qt::Key_Space and !timer3G->isActive()){
-        movimiento= new Movimiento(Franklin->getPosx(),479 ,55,90);
-        timer3G->start(1);
+        movimiento= new Movimiento(Franklin->getPosx(),479 ,25,90);
+        timer3G->start(2);
     }
 
 
 
+}
+
+
+void MainWindow::actualizarBala()
+{
+    movimientoBala->calPosicionBala();
+    movimientoBala->calVelocidadBala();
+    bala->setPos(1350 -movimientoBala->getPosx(),bala->getPosy());
+    if(1350 -movimientoBala->getPosx() < 0){
+        bala->setPos(1350,0);
+        movimientoBala = new Movimiento(0 , 600 , 200);
+    }
 }
 

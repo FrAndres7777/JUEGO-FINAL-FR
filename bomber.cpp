@@ -13,6 +13,16 @@ void BOMBER::setPosx(double newPosx)
     posx = newPosx;
 }
 
+double BOMBER::getPosy() const
+{
+    return posy;
+}
+
+void BOMBER::setPosy(double newPosy)
+{
+    posy = newPosy;
+}
+
 BOMBER::BOMBER()
 {
     this->radio=25;

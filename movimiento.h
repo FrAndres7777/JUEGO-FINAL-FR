@@ -15,11 +15,15 @@ public:
 
     Movimiento();
     Movimiento(double x , double y , double v , double a);
+     Movimiento(double x , double y , double v );
 
 
     void calVelocidad();
     void calPosicion();
     void newPosicion();
+
+    void calVelocidadBala();
+    void calPosicionBala();
 
     double getPosx() const;
     double getPosy() const;

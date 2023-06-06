@@ -32,6 +32,13 @@ Movimiento::Movimiento(double x, double y, double v, double a)
 
 }
 
+Movimiento::Movimiento(double x, double y, double v)
+{
+    this->posx=x;
+    this->posy=y;
+    this->velx=v;
+}
+
 
 void Movimiento::calVelocidad()
 {
@@ -51,5 +58,20 @@ void Movimiento::newPosicion()
     velocidad=sqrt(pow(velx,2) + pow(vely,2));
     angulo=atan2(vely,velx);
 }
+
+void Movimiento::calVelocidadBala()
+{
+    velx=velx;
+
+}
+
+void Movimiento::calPosicionBala()
+{
+
+    posx=posx+velx*tiempo;
+
+}
+
+
 
 

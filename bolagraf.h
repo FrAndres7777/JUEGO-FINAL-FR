@@ -22,9 +22,12 @@ public:
 
     void actualizar(float dt, int v_lim);
 
+    void setTraje(int newTraje);
+
 private:
     bola *esfera;
     float escala;
+    int traje=0;
 };
 
 #endif // BOLAGRAF_H

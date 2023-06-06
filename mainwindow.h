@@ -4,11 +4,12 @@
 #include <QMainWindow>
 #include <QGraphicsScene>
 #include <bomber.h>
+#include <galloenemy.h>
 #include "bolagraf.h"
 #include "movimiento.h"
 #include <QTimer>
 #include <QKeyEvent>
-
+#include <ball.h>
 #include <QSoundEffect>
 #include <QAudioOutput>
 #include <QMediaPlayer>
@@ -42,13 +43,19 @@ public:
 private slots:
     void actualizar();
     void actualizarG();
+    void actualizarBala();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
     QList<bolagraf *> balls;
     BOMBER *Franklin;// jugador principal
-    bolagraf *obj;
+    GALLOEnemy  *Colorado;//enemigo
+
+    //balas
+    ball *bala;
+
+
     QTimer *timer;
     QTimer *timer2;
      QTimer *timer3G;
@@ -63,6 +70,8 @@ private:
 
 
     Movimiento *movimiento;
+     Movimiento *movimientoBala;
+
 
 
 

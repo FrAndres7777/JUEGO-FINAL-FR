@@ -26,11 +26,15 @@ QRectF bolagraf::boundingRect() const
 
 void bolagraf::paint(QPainter *painter, const QStyleOptionGraphicsItem *option, QWidget *widget)
 {
+
+
         QPixmap ninja(":/imagens/FR20.png");
         painter->drawPixmap(boundingRect(),ninja,ninja.rect());
+        Q_UNUSED(option);
+        Q_UNUSED(widget);
+
        //dibuja una elipse encerrada en la boundingRect
-    Q_UNUSED(option);
-    Q_UNUSED(widget);
+
 }
 
 void bolagraf::pos(int v_lim)
@@ -62,5 +66,10 @@ void bolagraf::actualizar(float dt, int v_lim)
 {
     esfera->mover(dt);
     pos(v_lim);
+}
+
+void bolagraf::setTraje(int newTraje)
+{
+    traje = newTraje;
 }
 
