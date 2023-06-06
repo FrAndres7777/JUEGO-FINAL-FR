@@ -44,6 +44,7 @@ private slots:
     void actualizar();
     void actualizarG();
     void actualizarBala();
+    void ChoquesGoma();
 
 private:
     Ui::MainWindow *ui;

@@ -123,6 +123,7 @@ void MainWindow::actualizar()
         qDebug()<< ((*it)->getEsfera()->getVx())<<"\n";
 
     }
+    ChoquesGoma();
 
 
 }
@@ -198,6 +199,22 @@ void MainWindow::actualizarBala()
     if(1350 -movimientoBala->getPosx() < 0){
         bala->setPos(1350,0);
         movimientoBala = new Movimiento(0 , 600 , 200);
+    }
+}
+
+void MainWindow::ChoquesGoma()
+{
+    QList<bolagraf*>::Iterator it;
+    for(it=balls.begin();it!= balls.end();it++){
+        if(Franklin->collidesWithItem(*it)){
+          (*it)->setPos(1300,500);
+          (*it)->getEsfera()->setPx(1300);
+           (*it)->getEsfera()->setPy(500);
+
+
+
+
+        }
     }
 }
 
