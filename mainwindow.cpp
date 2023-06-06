@@ -93,6 +93,14 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer3G, SIGNAL(timeout()), this, SLOT(actualizarG()));
 
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizarBala()));
+    // Proyectiles     //
+
+    movimientoProyectiles =new Movimiento(0,2*40,100,50);
+    balaProy = new ball(0,0,20);
+    scene->addItem(balaProy);
+    timerProy = new QTimer;
+    connect(timerProy,SIGNAL(timeout()),this,SLOT(actualizarProyectiles()));
+    timerProy->start(10);
 
 
 }
@@ -256,6 +264,22 @@ void MainWindow::ChoquesBall()
 
     }
 }
+
+void MainWindow::actualizarProyectiles()
+{
+
+    movimientoProyectiles->calVelocidad();
+    movimientoProyectiles->calPosicion();
+    movimientoProyectiles->newPosicion();
+    balaProy->setPos(movimientoProyectiles->getPosx(),700 -movimientoProyectiles->getPosy());
+    qDebug()<< balaProy->getPosy() <<"\n" ;
+    if(700 -movimientoProyectiles->getPosy() > 620){
+        timerProy->stop();
+    }
+
+}
+
+
 
 
 

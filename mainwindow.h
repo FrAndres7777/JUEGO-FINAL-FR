@@ -46,6 +46,7 @@ private slots:
     void actualizarBala();
     void ChoquesGoma();
     void ChoquesBall();
+    void actualizarProyectiles();
 
 
 private:
@@ -58,10 +59,13 @@ private:
     //balas
     ball *bala;
 
+    ball *balaProy;
+
 
     QTimer *timer;
     QTimer *timer2;
      QTimer *timer3G;
+     QTimer *timerProy;
 
      QTimer *timerMRebote;
      QMediaPlayer *player;
@@ -85,6 +89,8 @@ private:
 
     Movimiento *movimiento;
      Movimiento *movimientoBala;
+
+    Movimiento *movimientoProyectiles;
 
 
 
