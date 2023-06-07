@@ -27,6 +27,8 @@ public:
     void MoveRight();
     void setTraje(int newTraje);
     double getPosx() const;
+    void setPosx(double newPosx);
+    void setPosy(double newPosy);
 };
 
 #endif // BALL_H

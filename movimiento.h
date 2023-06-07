@@ -28,6 +28,10 @@ public:
     double getPosx() const;
     double getPosy() const;
     double getMasa() const;
+    void setVelocidad(double newVelocidad);
+    void setAngulo(double newAngulo);
+    void setPosx(double newPosx);
+    void setPosy(double newPosy);
 };
 
 #endif // MOVIMIENTO_H

@@ -17,6 +17,26 @@ double Movimiento::getMasa() const
     return masa;
 }
 
+void Movimiento::setVelocidad(double newVelocidad)
+{
+    velocidad = newVelocidad;
+}
+
+void Movimiento::setAngulo(double newAngulo)
+{
+    angulo = newAngulo;
+}
+
+void Movimiento::setPosx(double newPosx)
+{
+    posx = newPosx;
+}
+
+void Movimiento::setPosy(double newPosy)
+{
+    posy = newPosy;
+}
+
 Movimiento::Movimiento()
 {
 

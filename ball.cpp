@@ -16,6 +16,16 @@ double ball::getPosx() const
     return posx;
 }
 
+void ball::setPosx(double newPosx)
+{
+    posx = newPosx;
+}
+
+void ball::setPosy(double newPosy)
+{
+    posy = newPosy;
+}
+
 ball::ball()
 {
 

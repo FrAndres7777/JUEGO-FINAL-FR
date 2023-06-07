@@ -95,8 +95,8 @@ MainWindow::MainWindow(QWidget *parent)
     connect(timer, SIGNAL(timeout()), this, SLOT(actualizarBala()));
     // Proyectiles     //
 
-    movimientoProyectiles =new Movimiento(0,2*40,100,50);
-    balaProy = new ball(0,0,20);
+    movimientoProyectiles =new Movimiento(600,2*40,110,140);
+    balaProy = new ball(600,0,20);
     scene->addItem(balaProy);
     timerProy = new QTimer;
     connect(timerProy,SIGNAL(timeout()),this,SLOT(actualizarProyectiles()));
@@ -274,7 +274,27 @@ void MainWindow::actualizarProyectiles()
     balaProy->setPos(movimientoProyectiles->getPosx(),700 -movimientoProyectiles->getPosy());
     qDebug()<< balaProy->getPosy() <<"\n" ;
     if(700 -movimientoProyectiles->getPosy() > 620){
-        timerProy->stop();
+        //timerProy->stop();
+        //movimientoProyectiles->setAngulo(339);
+        //movimientoProyectiles->setVelocidad(100);
+        //movimientoProyectiles->setPosx(650);
+        //movimientoProyectiles->setPosy(80);
+        //balaProy->setPosx(600);
+        //balaProy->setPosy(0);
+
+        int vel = (abs(Franklin->getPosx()-balaProy->getPosx())*9.8)/sin(90) ;
+        vel= sqrt(vel);
+
+
+        balaProy->setPos(0,700);
+       movimientoProyectiles =new Movimiento(600,2*40,vel+25,140);
+        balaProy = new ball(600,0,20);
+       scene->addItem(balaProy);
+        movimientoProyectiles->calVelocidad();
+        movimientoProyectiles->calPosicion();
+        movimientoProyectiles->newPosicion();
+        balaProy->setPos(movimientoProyectiles->getPosx(),700 -movimientoProyectiles->getPosy());
+
     }
 
 }
