@@ -242,6 +242,9 @@ void MainWindow::actualizarBala()
 
 void MainWindow::ChoquesGoma()
 {
+    if (vida<=0){
+        close();
+    }
     QList<bolagraf*>::Iterator it;
     for(it=balls.begin();it!= balls.end();it++){
         if(Franklin->collidesWithItem(*it)){
@@ -249,6 +252,7 @@ void MainWindow::ChoquesGoma()
           (*it)->getEsfera()->setPx(1300);
            (*it)->getEsfera()->setPy(500);
             playerChoke->play();
+            vida= vida-1;
 
 
 
@@ -261,7 +265,22 @@ void MainWindow::ChoquesBall()
 {
     if (Franklin->collidesWithItem(bala)){
         playerChoke->play();
+        vida= vida-1;
+        bala->setPos(1350,0);
+        movimientoBala = new Movimiento(0 , 600 , 200);
 
+    }
+    if(Franklin->collidesWithItem(balaProy)){
+         playerChoke->play();
+        int vel = (abs(Franklin->getPosx()-balaProy->getPosx())*9.8)/sin(90) ;
+        vel= sqrt(vel);
+        vida= vida-1;
+
+
+        balaProy->setPos(0,700);
+        movimientoProyectiles =new Movimiento(660,2*40,vel+25,140);
+        balaProy = new ball(660,0,20);
+        scene->addItem(balaProy);
     }
 }
 
@@ -287,8 +306,8 @@ void MainWindow::actualizarProyectiles()
 
 
         balaProy->setPos(0,700);
-       movimientoProyectiles =new Movimiento(600,2*40,vel+25,140);
-        balaProy = new ball(600,0,20);
+       movimientoProyectiles =new Movimiento(660,2*40,vel+25,140);
+        balaProy = new ball(660,0,20);
        scene->addItem(balaProy);
         movimientoProyectiles->calVelocidad();
         movimientoProyectiles->calPosicion();

@@ -91,6 +91,7 @@ private:
      Movimiento *movimientoBala;
 
     Movimiento *movimientoProyectiles;
+     int vida =10;
 
 
 
