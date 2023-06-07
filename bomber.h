@@ -40,5 +40,6 @@ public:
     void setPosx(double newPosx);
     double getPosy() const;
     void setPosy(double newPosy);
+    void setVelocidad(double newVelocidad);
 };
 #endif // BOMBER_H

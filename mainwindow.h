@@ -47,11 +47,22 @@ private slots:
     void ChoquesGoma();
     void ChoquesBall();
     void actualizarProyectiles();
+    void invisible();
+    void cerrar();
 
+
+    void on_INICIO_clicked();
+
+    void on_FERRERO_clicked();
+
+    void on_GUACHARAKO_clicked();
+
+    void on_COLORADO_clicked();
 
 private:
     Ui::MainWindow *ui;
     QGraphicsScene *scene;
+    QGraphicsScene *sceneInicio;
     QList<bolagraf *> balls;
     BOMBER *Franklin;// jugador principal
     GALLOEnemy  *Colorado;//enemigo
@@ -66,6 +77,8 @@ private:
     QTimer *timer2;
      QTimer *timer3G;
      QTimer *timerProy;
+
+    QTimer *timerCierre;
 
      QTimer *timerMRebote;
      QMediaPlayer *player;
@@ -92,6 +105,7 @@ private:
 
     Movimiento *movimientoProyectiles;
      int vida =10;
+    int salto = 25;
 
 
 

@@ -23,6 +23,11 @@ void BOMBER::setPosy(double newPosy)
     posy = newPosy;
 }
 
+void BOMBER::setVelocidad(double newVelocidad)
+{
+    velocidad = newVelocidad;
+}
+
 BOMBER::BOMBER()
 {
     this->radio=25;

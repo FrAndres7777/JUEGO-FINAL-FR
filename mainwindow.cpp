@@ -7,100 +7,20 @@ MainWindow::MainWindow(QWidget *parent)
     , ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-
-
-    scene=new QGraphicsScene(this);
-    scene->setBackgroundBrush(QPixmap(":/imagens/FONDOMARIOFRjpg").scaled(1400,700));
+    sceneInicio=new QGraphicsScene(this);
+    sceneInicio->setBackgroundBrush(QPixmap(":/imagens/FONDOINICIO.jpg").scaled(1400,700));
     ui->graphicsView->setFixedSize(1400,700);
     h_limit = 1400;
     v_limit = 700;
-    ui->graphicsView->setScene(scene);
-    scene->setSceneRect(0,0,h_limit,v_limit);
-    scene->addRect(scene->sceneRect());
+    ui->graphicsView->setScene(sceneInicio);
+    sceneInicio->setSceneRect(0,0,h_limit,v_limit);
+    sceneInicio->addRect(sceneInicio->sceneRect());
 
     ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
     ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->INICIO->setVisible(false);
 
 
-
-    balls.push_back(new bolagraf(1300,60,-1,4,30,1));
-    scene->addItem(balls.back());
-    balls.push_back(new bolagraf(1350,80,-1,4,30,1));
-    scene->addItem(balls.back());
-    balls.push_back(new bolagraf(700,45,-1,4,35,1));
-    scene->addItem(balls.back());
-    //balls.push_back(new bolagraf(300,30,5,5,35,1));
-    //scene->addItem(balls.back());
-
-    //personaje
-     Franklin = new BOMBER (0,286,50);
-     scene->addItem(Franklin);
-
-     //GAllos lanzador de balas y  proyectiles parabolicos
-     Colorado = new GALLOEnemy(655,300,45);
-    scene->addItem(Colorado);
-
-
-     //music
-     player = new QMediaPlayer;
-     audioOutput = new QAudioOutput;
-     player->setAudioOutput(audioOutput);
-     // ...
-     player->setSource(QUrl::fromLocalFile("qrc:/Music/BASEJuego.mp3"));
-     player->play();
-
-     playerR = new QMediaPlayer;
-     audioOutputR = new QAudioOutput;
-     playerR->setAudioOutput(audioOutputR);
-     // ...
-     playerR->setSource(QUrl::fromLocalFile("qrc:/Music/rebote_o1ZAQ5Tk.mp3"));
-     playerR->stop();
-
-     //music Bala
-     playerB = new QMediaPlayer;
-     audioOutputB = new QAudioOutput;
-     playerB->setAudioOutput(audioOutputB);
-     // ...
-     playerB->setSource(QUrl::fromLocalFile("qrc:/Music/SonidoBala.mp3"));
-     playerB->play();
-     // MUSIC CHOQUE
-     playerChoke = new QMediaPlayer;
-     audioOutputChoke = new QAudioOutput;
-     playerChoke->setAudioOutput(audioOutputChoke);
-     // ...
-     playerChoke->setSource(QUrl::fromLocalFile("qrc:/Music/CHOKEFrBALL.mp3"));
-     playerChoke->stop();
-
-
-
-
-
-     //BALA
-     bala = new ball (0, 550 ,20);
-     scene->addItem(bala);
-     movimientoBala = new Movimiento(0 , 0 , 200);
-
-
-    timer = new QTimer;
-    timer->stop();
-    connect(timer, SIGNAL(timeout()), this, SLOT(actualizar()));
-    timer->start(20);
-
-
-
-    timer3G = new QTimer;
-    timer3G->stop();
-    connect(timer3G, SIGNAL(timeout()), this, SLOT(actualizarG()));
-
-    connect(timer, SIGNAL(timeout()), this, SLOT(actualizarBala()));
-    // Proyectiles     //
-
-    movimientoProyectiles =new Movimiento(600,2*40,110,140);
-    balaProy = new ball(600,0,20);
-    scene->addItem(balaProy);
-    timerProy = new QTimer;
-    connect(timerProy,SIGNAL(timeout()),this,SLOT(actualizarProyectiles()));
-    timerProy->start(10);
 
 
 }
@@ -209,7 +129,7 @@ void MainWindow::keyPressEvent(QKeyEvent *evento)
 
 
     }else if(evento->key()== Qt::Key_Space and !timer3G->isActive()){
-        movimiento= new Movimiento(Franklin->getPosx(),479 ,25,90);
+        movimiento= new Movimiento(Franklin->getPosx(),479 ,salto,90);
         timer3G->start(2);
     }
 
@@ -321,4 +241,150 @@ void MainWindow::actualizarProyectiles()
 
 
 
+
+
+void MainWindow::on_INICIO_clicked()
+{
+    ui->INICIO->setVisible(false);
+
+    scene=new QGraphicsScene(this);
+    scene->setBackgroundBrush(QPixmap(":/imagens/FONDOMARIOFRjpg").scaled(1400,700));
+    ui->graphicsView->setFixedSize(1400,700);
+    h_limit = 1400;
+    v_limit = 700;
+    ui->graphicsView->setScene(scene);
+    scene->setSceneRect(0,0,h_limit,v_limit);
+    scene->addRect(scene->sceneRect());
+
+    ui->graphicsView->setHorizontalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+    ui->graphicsView->setVerticalScrollBarPolicy(Qt::ScrollBarAlwaysOff);
+
+
+
+    balls.push_back(new bolagraf(1300,60,-1,4,30,1));
+    scene->addItem(balls.back());
+    balls.push_back(new bolagraf(1350,80,-1,4,30,1));
+    scene->addItem(balls.back());
+    balls.push_back(new bolagraf(700,45,-1,4,35,1));
+    scene->addItem(balls.back());
+    //balls.push_back(new bolagraf(300,30,5,5,35,1));
+    //scene->addItem(balls.back());
+
+    //personaje
+
+    scene->addItem(Franklin);
+
+    //GAllos lanzador de balas y  proyectiles parabolicos
+    Colorado = new GALLOEnemy(655,300,45);
+    scene->addItem(Colorado);
+
+
+    //music
+    player = new QMediaPlayer;
+    audioOutput = new QAudioOutput;
+    player->setAudioOutput(audioOutput);
+    // ...
+    player->setSource(QUrl::fromLocalFile("qrc:/Music/BASEJuego.mp3"));
+    player->play();
+
+    playerR = new QMediaPlayer;
+    audioOutputR = new QAudioOutput;
+    playerR->setAudioOutput(audioOutputR);
+    // ...
+    playerR->setSource(QUrl::fromLocalFile("qrc:/Music/rebote_o1ZAQ5Tk.mp3"));
+    playerR->stop();
+
+    //music Bala
+    playerB = new QMediaPlayer;
+    audioOutputB = new QAudioOutput;
+    playerB->setAudioOutput(audioOutputB);
+    // ...
+    playerB->setSource(QUrl::fromLocalFile("qrc:/Music/SonidoBala.mp3"));
+    playerB->play();
+    // MUSIC CHOQUE
+    playerChoke = new QMediaPlayer;
+    audioOutputChoke = new QAudioOutput;
+    playerChoke->setAudioOutput(audioOutputChoke);
+    // ...
+    playerChoke->setSource(QUrl::fromLocalFile("qrc:/Music/CHOKEFrBALL.mp3"));
+    playerChoke->stop();
+
+
+
+
+
+    //BALA
+    bala = new ball (0, 550 ,20);
+    scene->addItem(bala);
+    movimientoBala = new Movimiento(0 , 0 , 200);
+
+
+    timer = new QTimer;
+    timer->stop();
+    connect(timer, SIGNAL(timeout()), this, SLOT(actualizar()));
+    timer->start(20);
+
+    //cierre programa
+    timerCierre = new QTimer;
+    timerCierre->stop();
+    connect(timerCierre, SIGNAL(timeout()), this, SLOT(cerrar()));
+    timerCierre->start(120000);
+
+
+
+    timer3G = new QTimer;
+    timer3G->stop();
+    connect(timer3G, SIGNAL(timeout()), this, SLOT(actualizarG()));
+
+    connect(timer, SIGNAL(timeout()), this, SLOT(actualizarBala()));
+    // Proyectiles     //
+
+    movimientoProyectiles =new Movimiento(600,2*40,110,140);
+    balaProy = new ball(600,0,20);
+    scene->addItem(balaProy);
+    timerProy = new QTimer;
+    connect(timerProy,SIGNAL(timeout()),this,SLOT(actualizarProyectiles()));
+    timerProy->start(10);
+
+}
+
+void MainWindow::invisible()
+{
+
+    ui->INICIO->setVisible(true);
+    ui->COLORADO->setVisible(false);
+    ui->FERRERO->setVisible(false);
+    ui->GUACHARAKO->setVisible(false);
+}
+
+void MainWindow::cerrar()
+{
+    close();
+}
+
+
+void MainWindow::on_FERRERO_clicked()
+{
+    Franklin = new BOMBER (0,286,50);
+    vida = 15;
+    invisible();
+}
+
+
+void MainWindow::on_GUACHARAKO_clicked()
+{
+     Franklin = new BOMBER (0,286,50);
+    vida = 9;
+     Franklin->setVelocidad(7);
+    invisible();
+}
+
+
+void MainWindow::on_COLORADO_clicked()
+{
+     Franklin = new BOMBER (0,286,50);
+    vida = 9;
+     salto = 38;
+    invisible();
+}
 
