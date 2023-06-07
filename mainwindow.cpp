@@ -279,14 +279,14 @@ void MainWindow::on_INICIO_clicked()
     scene->addItem(Colorado);
 
 
-    //music
+    //music BASE MARIO
     player = new QMediaPlayer;
     audioOutput = new QAudioOutput;
     player->setAudioOutput(audioOutput);
     // ...
     player->setSource(QUrl::fromLocalFile("qrc:/Music/BASEJuego.mp3"));
     player->play();
-
+    // MUSIC REBOTE BOLA DE GOMA
     playerR = new QMediaPlayer;
     audioOutputR = new QAudioOutput;
     playerR->setAudioOutput(audioOutputR);
@@ -294,14 +294,14 @@ void MainWindow::on_INICIO_clicked()
     playerR->setSource(QUrl::fromLocalFile("qrc:/Music/rebote_o1ZAQ5Tk.mp3"));
     playerR->stop();
 
-    //music Bala
+    //music Bala MOVIMIENTO RECTILINEO UNIFORME
     playerB = new QMediaPlayer;
     audioOutputB = new QAudioOutput;
     playerB->setAudioOutput(audioOutputB);
     // ...
     playerB->setSource(QUrl::fromLocalFile("qrc:/Music/SonidoBala.mp3"));
     playerB->play();
-    // MUSIC CHOQUE
+    // MUSIC CHOQUE BALAS
     playerChoke = new QMediaPlayer;
     audioOutputChoke = new QAudioOutput;
     playerChoke->setAudioOutput(audioOutputChoke);
@@ -313,7 +313,7 @@ void MainWindow::on_INICIO_clicked()
 
 
 
-    //BALA
+    // NEW BALA
     bala = new ball (0, 550 ,20);
     scene->addItem(bala);
     movimientoBala = new Movimiento(0 , 0 , 200);
@@ -350,7 +350,7 @@ void MainWindow::on_INICIO_clicked()
 
 void MainWindow::invisible()
 {
-
+    // HACER INVISIBLES ITEMS GRAFICOS
     ui->INICIO->setVisible(true);
     ui->COLORADO->setVisible(false);
     ui->FERRERO->setVisible(false);
@@ -359,12 +359,14 @@ void MainWindow::invisible()
 
 void MainWindow::cerrar()
 {
+    // CERRAR EL PROGRAMA JUEGO GANADO
     close();
 }
 
 
 void MainWindow::on_FERRERO_clicked()
 {
+    // ASIGNACION CARACTERISTICAS GALLO
     Franklin = new BOMBER (0,286,50);
     vida = 15;
     invisible();
@@ -372,7 +374,9 @@ void MainWindow::on_FERRERO_clicked()
 
 
 void MainWindow::on_GUACHARAKO_clicked()
+
 {
+    // ASIGNACION CARACTERISTICAS GALLO
      Franklin = new BOMBER (0,286,50);
     vida = 9;
      Franklin->setVelocidad(7);
@@ -382,9 +386,10 @@ void MainWindow::on_GUACHARAKO_clicked()
 
 void MainWindow::on_COLORADO_clicked()
 {
+    // ASIGNACION CARACTERISTICAS GALLO
      Franklin = new BOMBER (0,286,50);
     vida = 9;
-     salto = 38;
+     salto = 48;
     invisible();
 }
 
