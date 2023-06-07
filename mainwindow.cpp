@@ -23,6 +23,8 @@ MainWindow::MainWindow(QWidget *parent)
 
 
 
+
+
 }
 
 MainWindow::~MainWindow()
@@ -66,7 +68,7 @@ void MainWindow::actualizar()
     for(it=balls.begin();it!= balls.end();it++){
         (*it)->actualizar(DT,v_limit);
         bordercollision(*it);
-        qDebug()<< ((*it)->getEsfera()->getVx())<<"\n";
+        //qDebug()<< ((*it)->getEsfera()->getVx())<<"\n";
 
     }
     ChoquesGoma();
@@ -213,13 +215,7 @@ void MainWindow::actualizarProyectiles()
     balaProy->setPos(movimientoProyectiles->getPosx(),700 -movimientoProyectiles->getPosy());
     qDebug()<< balaProy->getPosy() <<"\n" ;
     if(700 -movimientoProyectiles->getPosy() > 620){
-        //timerProy->stop();
-        //movimientoProyectiles->setAngulo(339);
-        //movimientoProyectiles->setVelocidad(100);
-        //movimientoProyectiles->setPosx(650);
-        //movimientoProyectiles->setPosy(80);
-        //balaProy->setPosx(600);
-        //balaProy->setPosy(0);
+
 
         int vel = (abs(Franklin->getPosx()-balaProy->getPosx())*9.8)/sin(90) ;
         vel= sqrt(vel);

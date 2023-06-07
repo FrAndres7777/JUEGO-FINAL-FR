@@ -79,11 +79,6 @@ void Movimiento::newPosicion()
     angulo=atan2(vely,velx);
 }
 
-void Movimiento::calVelocidadBala()
-{
-    velx=velx;
-
-}
 
 void Movimiento::calPosicionBala()
 {
@@ -91,6 +86,13 @@ void Movimiento::calPosicionBala()
     posx=posx+velx*tiempo;
 
 }
+
+void Movimiento::calVelocidadBala()
+{
+    velx=velx;
+
+}
+
 
 
 
